@@ -1,0 +1,1 @@
+<p><?php echo $tool -> name; ?> has been transferred to this job site.</p>

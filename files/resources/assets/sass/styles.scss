@@ -1,0 +1,2372 @@
+// ====================================================================
+
+// --> variables
+
+// colours
+
+$turqoise-color: #1fb890;
+
+$brightgreen-color: #29ffc7;
+
+$darkgrey-color: #444;
+
+$lightgrey-color: #DDD;
+
+// fonts
+
+$lato-font: 'Lato', sans-serif;
+
+// border
+
+$border-round: 0.3em;
+
+// ====================================================================
+
+// --> mixins
+
+@mixin container {
+        margin: 0 auto;
+        position: relative;
+}
+
+@mixin flexwrap {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+@mixin textshadow {
+    text-shadow: 0.1em 0.1em 0.01em #222;
+}
+
+@mixin textshadow2 {
+    text-shadow: 0.05em 0.05em 0.01em #777;
+}
+
+@mixin boxshadow {
+    box-shadow: 0.1em 0.1em 0.01em #222;
+}
+
+@mixin turqbutton {
+    padding: 0.8em 0.4em;
+    font-size: 0.8em;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    background-color: $turqoise-color;
+    border: 0;
+    border-radius: $border-round;
+    color: #FFF;
+}
+
+@mixin hover-transition {
+    transition: all 0.4s ease;
+}
+
+
+// ====================================================================
+
+// --> pages
+
+
+
+body {
+    font-family: $lato-font;
+    font-weight: 300;
+    overflow-x: hidden;
+    color: $darkgrey-color;
+
+    #token {
+        display: none;
+    }
+
+    h1 {
+        font-size: 1.4em;
+    }
+    
+    h2 {
+        font-size: 1.2em;
+        color: $darkgrey-color;
+    }
+    
+    h3 {
+        font-size: 1em;
+    }
+    
+    h1,h2,h3,h4 {
+        font-weight: 400;
+        color: $darkgrey-color;
+    }
+    
+    .container {
+            width: 80%;
+            @include container;
+    }
+    
+    .hide {
+        display: none;
+    }
+    
+    .required-text {
+        font-size: 0.8em;
+        color: red;
+    }
+
+    .success-form {
+        padding: 0.7em;
+        font-size: 0.7em;
+        color: #FFF;
+        background-color: rgba(31,184,144,0.8);
+        z-index: 100;
+        width: 85%;
+        a {
+            text-decoration: none;
+            color: $turqoise-color;
+            
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .success-form2 {
+        @extend .success-form;
+        margin-top: 2em !important;
+    }
+
+    .error-form {
+        @extend .success-form;
+        background-color: rgba(235,87,87,0.8);
+    }
+
+    .error-style {
+        color: red !important;
+        font-size: 0.75em !important;
+
+        .fa {
+            padding-right: 0.2em !important;
+        }
+    }
+
+    .icon-wrapper {
+        z-index: 1000 !important;
+    }
+
+    .field-labels, .field-labels2 {
+        font-size: 0.8em !important;
+        color: $turqoise-color !important;
+    }
+
+    // spinner
+
+    .no-js #loader { display: none;  }
+    .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+    .se-pre-con {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: url(../images/loader.gif) center no-repeat #FFF;
+    }
+
+    // autocomplete
+
+    .ui-autocomplete {
+        position: absolute !important;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        display: none;
+        min-width: 10em !important;   
+        padding: 4px 0;
+        margin: 0 0 10px 25px;
+        list-style: none !important;
+        background-color: #ffffff;
+        border: thin solid $lightgrey-color !important;
+
+        .ui-menu-item {
+            padding: 0.5em 1em !important;
+            font-size: 0.8em !important;
+
+        }
+    }
+
+    .ui-helper-hidden-accessible { position: absolute; left: -9999px !important; }
+
+    
+    // login and signup page 
+    
+    .form-page {
+        min-height: 100vh;
+        padding: 5em 0;
+        background-image: url("../images/home-bg1.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top;
+        
+        .form-header{
+
+            text-align: center;
+            
+            .login-logo {
+                width: 12em;
+                margin: 0 auto;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            .by-line {
+                display: inline-block;
+                font-weight: 300;
+                font-size: 1.1em;
+                @include textshadow;
+                margin-top: 0.7em;
+                color: #FFF;
+            }
+        }
+            
+        .form-wrapper {
+            margin: 5em auto 1em;
+            
+            h1 {
+                color: #FFF;
+                margin-bottom: 1.5em;
+                @include textshadow;
+            }
+            
+            .required-text {
+                display: block;
+                margin-bottom: 1.5em !important;
+                color: #FFF;
+                background-color: rgba(0,0,0,0.6);
+                padding: 0.4em 0.3em;
+                border-radius: 0.2em;
+            }
+            
+            // forms 
+            
+            #login-form, #signup-form {
+                .field-type {
+                    width: 100%;
+                    margin: 0 0 0.5em 0;
+                    box-sizing: border-box;
+                    position: relative;
+
+                    input {
+                        width: 100%;
+                        padding: 0.6em 0.4em;
+                        font-family: $lato-font;
+                        font-size: 0.9em;
+                        box-sizing: border-box;
+                        background-color: rgba(0,0,0,0.4);
+                        border: thin solid #FFF;
+                        border-radius: $border-round;
+                        color: #FFF;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+
+                    ::-webkit-input-placeholder { 
+                        color:#FFF;
+                        text-transform: uppercase;
+                        letter-spacing: 0.2em;
+                    }
+
+                    ::-moz-placeholder { 
+                        color:#FFF;
+                        text-transform: uppercase;
+                        letter-spacing: 0.2em;
+                    } /* firefox 19+ */
+
+                    :-ms-input-placeholder { 
+                        color:#FFF;
+                        text-transform: uppercase;
+                        letter-spacing: 0.2em;
+                    } /* ie */
+
+                    input:-moz-placeholder { 
+                        color:#FFF;
+                        text-transform: uppercase;
+                        letter-spacing: 0.2em;
+                    }
+                }
+                .button {
+                    width: 100%;
+                    margin-top: 2em;
+
+                    input {
+                        width: 100%;
+                        @include turqbutton;
+
+                        &:hover {
+                            background-color: $lightgrey-color;
+                            @include hover-transition;
+                        }
+                    }
+                }
+            }
+        }
+            
+        .login-account-signup {
+            color: #FFF;
+            font-size: 0.9em;
+            text-align: center;
+
+            a {
+                color: $turqoise-color;
+                text-decoration: none;
+                @include hover-transition;
+                
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    } // end of form-page class
+    
+    // menu section
+    
+    #menu-overlay {
+        position: fixed;
+        width: 70%;
+        height: 100%;
+        background-color: $darkgrey-color;
+        transition: all ease 0.3s;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        z-index: 5000;
+        box-sizing: border-box;
+        border-bottom: 1.5em solid $turqoise-color;
+        
+        &.delayed {
+            animation-delay: 3.95s;
+        }
+        #menu-close {
+            position: absolute;
+            top: 1em;
+            right: 0;
+                
+            i {
+                font-size: 1.2em;
+                color: $turqoise-color;
+                @include hover-transition;
+                    
+                &:hover {
+                    @include textshadow;
+                    cursor: pointer;
+                    color: #FFF;
+                }
+            }
+        }
+        
+        #nav {
+            
+            padding: 1.3em 0;
+            
+            ul {
+                padding-left: 0;
+                
+                li {
+                    list-style-type: none;
+                    padding: 1em 0;
+                    border-bottom: thin solid #555;
+                    text-transform: uppercase;
+                    letter-spacing: 0.2em;
+                    font-size: 0.8em;
+                    
+                    &:nth-of-type(1) {
+                        animation-delay: 1s;
+                    }
+                    
+                    &:nth-of-type(2) {
+                        animation-delay: 1.25s;
+                    }
+                    
+                    &:nth-of-type(3) {
+                        animation-delay: 1.5s;
+                    }
+                    
+                    &:nth-of-type(4) {
+                        animation-delay: 1.75s;
+                    }
+                    
+                    &:nth-of-type(5) {
+                        animation-delay: 2s;
+                    }
+                    
+                    &:nth-of-type(6) {
+                        animation-delay: 2.25s;
+                    }
+                    
+                    &:nth-of-type(7) {
+                        animation-delay: 2.5s;
+                    }
+                    
+                    &:nth-of-type(8) {
+                        animation-delay: 2.75s;
+                    }
+                    
+                    a {
+                        color: $brightgreen-color;
+                        text-decoration: none;
+                        @include textshadow;
+                        @include hover-transition;
+                        
+                        &:hover {
+                            color: #FFF;
+                        }
+                    }
+                }
+            }
+        }
+    } // end of menu overlay id
+        
+    // dashboard page 
+    
+    #mobile-nav {
+        background-color: $lightgrey-color;
+        padding: 1em 0;
+        box-sizing: border-box;
+        
+        .container {
+            @include flexwrap;
+            justify-content: space-between;
+            
+            .icon-wrapper {
+                
+                padding-top: 0.4em;
+                
+                #hamburger {
+                    cursor: pointer;
+                    @include hover-transition;
+                    
+                    &:hover {
+                        color: #FFF;
+                    }
+                }
+                
+                #cross {
+                    cursor: pointer;
+                    @include hover-transition;
+                    
+                    &:hover {
+                        color: #FFF;
+                    }
+                }
+                
+                i {
+                    flex: 0 0 20%;
+                    font-size: 1.6em;
+                    color: $turqoise-color;
+                }
+                            
+                i.fa.fa-plus {
+                    text-align: right;
+                }
+            }
+            
+            #mobile-logo {
+                flex: 0 0 45%;
+                
+                img {
+                    width: 100%;
+                }
+            }
+
+        }
+    } // end of mobile nav id
+    
+
+    .mobile-content {
+        min-height: 100vh;
+        background-color: $darkgrey-color;
+        padding-bottom: 2em;
+        
+        .container {
+            @include flexwrap;
+            justify-content: space-between;
+            
+            .mobile-links {
+                flex: 0 0 48%;
+                width: 9em;
+                height: 9em;
+                margin: 2em 0 0;
+                box-sizing: border-box;
+                border: thin solid $brightgreen-color;
+                border-radius: $border-round;
+                color: $brightgreen-color;
+                @include hover-transition;
+                
+                .icon-wrapper {
+                    font-size: 1.8em;
+                    text-align: center;
+                    width: 3em;
+                    margin: 1.2em auto;
+                    display: block;
+
+                    a {
+                        color: $brightgreen-color;
+
+                        i {
+                            @include textshadow;
+                        }
+                    }
+                    
+                    
+                }
+                
+                .mobile-text {
+                    display: block;
+                    text-align: center;
+                    padding-top: 0.2em;
+                    text-transform: uppercase;
+                    font-size: 0.6em;
+                    letter-spacing: 0.2em;
+                    @include textshadow;
+                    
+                    a {
+                        color: $brightgreen-color;
+                        text-decoration: none;
+                        @include hover-transition;
+                        
+                    }
+                }
+                
+                &:hover {
+                    color: #FFF;
+                    border-color: #FFF;
+                    @include boxshadow;
+                    a {
+                        color: #FFF;
+                    }
+                }
+            }
+
+        }
+    } // end of mobile content class
+        
+    // mobile quick menu
+    
+    .mobile-quick-menu {
+        background-color: $darkgrey-color;
+        height: 2em;
+        padding: 0.5em 0;
+        
+        .container {
+            @include flexwrap;
+            
+            .icon-wrapper {
+                flex: 0 0 2em;
+                margin-right: 0.3em;
+                font-size: 1.1em;
+                line-height: 1.7em;
+                
+                a {
+                    color: $brightgreen-color;
+                    @include textshadow;
+                    @include hover-transition;
+                    
+                    &:hover {
+                        color: #FFF;
+                    }
+                }
+            }
+        }
+    } // end of mobile quick menu class
+
+    // 401 Error
+
+    #error401 {
+
+        min-height: 100vh;
+        padding: 1.5em 0;
+
+        .container {
+
+            @include flexwrap;
+
+            #error-image {
+                flex: 0 0 100%;
+
+                img {
+                    width: 100%;
+                }
+
+            }
+
+            
+            .large-text {
+                flex: 0 0 100%;
+                font-size: 1.7em;
+                text-transform: uppercase;
+                color: red;
+                text-align: center;
+                margin-top: 1.4em;
+            }
+
+
+            p {
+                flex: 0 0 100%;
+                font-weight: 400;
+                text-align: center;
+            }
+        }
+
+    }
+        
+        
+    // notifications list
+    
+    #notifications-area {
+        
+        min-height: 100vh;
+        padding: 1.5em 0;
+        
+        .container {
+            
+            .notification-wrapper {
+                
+                margin: 1em 0;
+                box-sizing: border-box;
+                padding: 0.5em;
+                position: relative;
+                
+                .notification-message {
+                    font-size: 0.8em;
+                    margin-bottom: 0.5em;
+                    
+                    a {
+                        text-decoration: none;
+                        color: $turqoise-color;
+                        
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+                
+                .notification-date {
+                    font-size: 0.7em;
+                    font-weight: 400;
+                    padding-bottom: 1em;
+                    border-bottom: thin solid $lightgrey-color;
+                }
+                
+                .notification-close {
+                    text-align: right;
+                    position: absolute;
+                    font-size: 0.8em;
+                    top: 0.3em;
+                    right: 0;
+                    a {
+                        color: red;
+                        @include hover-transition;
+                        
+                        &:hover {
+                            color: $turqoise-color;
+                        }
+                    }
+                }
+            }
+        }
+    } // end of notifications area id
+        
+    // tools list area
+    
+    #tools-area {
+        min-height: 100vh;
+        position: relative;
+        padding: 1.5em 0;
+        margin: 1em 0;
+        box-sizing: border-box;
+        padding: 0.5em;
+        
+        .container {
+            
+            .top-content {
+                
+                h2 {
+                
+                }
+                
+                .cta-button {
+
+                    height: 3em;
+                    background-color: $turqoise-color;
+                    @include turqbutton;
+                    @include hover-transition;
+
+                    a {
+                        display: block;
+                        text-align: center;
+                        color: #FFF;
+                        text-decoration: none;
+                        line-height: 1.5em;
+                    }
+
+                    &:hover {
+                        background-color: $lightgrey-color;
+                    }
+                }
+            }
+            
+            .tool-wrapper {
+                
+                font-size: 0.8em;
+                padding-bottom: 1em;
+                margin-bottom: 1em;
+                border-bottom: thin solid $lightgrey-color;
+                
+                .tool-name {
+                    
+                    margin-bottom: 0.5em;
+                    
+                    a {
+                        text-decoration: none;
+                        color: $turqoise-color;
+                        
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+                
+                .tool-info {
+                    margin-bottom: 0.3em;
+                    
+                    .tool-label {
+                        font-weight: 400;
+                    }
+                
+                }
+            }
+        }
+    } // end of tools area id
+        
+    // toolview area
+    
+    #toolview-area {
+        min-height: 100vh;
+        padding: 1em 0;
+        .container {
+            .top-content {
+                
+                .icon-wrapper{
+                    font-size: 1.1em;
+                    position: absolute;
+                    right: 0;
+                    cursor: pointer;
+                    color: red;
+                    
+                    a {
+                        color: red;
+                        
+                        &:hover {
+                            color: $turqoise-color;
+                        }
+                    }
+                }
+
+            }
+
+            .tool-wrapper {
+                
+                @include flexwrap;
+                
+                font-size: 0.9em;
+                
+                .tool-info {
+                    flex: 0 0 50%;
+                    padding: 0.4em 0;
+                }
+                
+                .tool-info2 {
+                    flex: 0 0 100%;
+                    padding: 0.4em 0;
+                }
+                
+                .tool-label {
+                    font-weight: 400;
+                    margin-right: 0.3em;
+                }
+                
+                .cta-button {
+                    flex: 0 0 100%;
+                    margin: 3em 0;
+                    @include turqbutton;
+                  
+                    @include hover-transition;
+
+                    a {
+                        display: block;
+                        text-align: center;
+                        color: #FFF;
+                        text-decoration: none;
+                        line-height: 1.8em;
+                    }
+
+                    &:hover {
+                        background-color: $lightgrey-color;
+                    }
+                }
+            }
+            
+        }
+    } // end of toolview area id
+        
+    // add tool form
+    
+    #add-area {
+        padding: 1em 0;
+        min-height: 100vh;
+        
+        .container {
+            h2 {
+            
+            }
+            
+            #add-form {
+                margin: 2em 0;
+                
+                .field-type {
+                    width: 100%;
+                    margin: 0 0 0.5em 0;
+                    box-sizing: border-box;
+
+                    input, select {
+                        width: 100%;
+                        padding: 0.6em 0.4em;
+                        font-family: $lato-font;
+                        font-size: 0.9em;
+                        box-sizing: border-box;
+                        border: thin solid $lightgrey-color;
+                        border-radius: $border-round;
+                        color: $darkgrey-color;
+                        margin-top: 0.5em;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                    
+                    select {
+                        height: 2.5em;
+                        background: none;
+                        letter-spacing: 0.2em;
+                        
+                        option {
+                            &:nth-of-type(1) {
+                                //display: none;
+                            }
+                        }
+                    }
+                    
+                    ::-webkit-input-placeholder { 
+                        color: $darkgrey-color;
+                        text-transform: uppercase;
+                        letter-spacing: 0.2em;
+                    }
+
+                    ::-moz-placeholder { 
+                        color: $darkgrey-color;
+                        text-transform: uppercase;
+                        letter-spacing: 0.2em;
+                    } /* firefox 19+ */
+
+                    :-ms-input-placeholder { 
+                        color: $darkgrey-color;
+                        text-transform: uppercase;
+                        letter-spacing: 0.2em;
+                    } /* ie */
+
+                    input:-moz-placeholder { 
+                        color: $darkgrey-color;
+                        text-transform: uppercase;
+                        letter-spacing: 0.2em;
+                    }
+                }
+                
+                .field-type2 {
+                    @extend .field-type;
+                }
+                
+                .button {
+                    width: 100%;
+                    margin-top: 2em;
+                    font-family: $lato-font;
+
+                    input {
+                        width: 100%;
+                        @include turqbutton;
+
+                        &:hover {
+                            background-color: $lightgrey-color;
+                            @include hover-transition;
+                        }
+                    }
+                }
+            }
+        }
+    } // end of tooladd-area id
+    
+    // edit tool area
+    
+    #tooledit-area {
+        @extend #add-area;
+        
+        #edit-tool-form {
+            @extend #add-form;
+
+            input, select {
+                        margin-top: 0.5em !important;
+            }
+            
+        }
+    } // end of tooledit area id
+        
+        
+    // company tools area for super users
+
+    #tools-area-super {
+        @extend #tools-area;
+    } // end of tools area super id
+
+    // profile view 
+    #profile-area {
+        @extend #toolview-area;
+
+        .user-info-wrapper {
+            @extend .tool-wrapper;
+
+            #profile-image {
+                flex: 0 0 100%;
+                max-width: 17em;
+                margin: 1em auto;
+
+
+                img {
+                    width: 100%;
+                    height: 17em;
+                }
+            }
+
+            #user-details {
+                flex: 0 0 100%;
+                @include flexwrap;
+
+                .user-info {
+                    @extend .tool-info;
+                }
+
+                .user-info2 {
+                    @extend .tool-info2;
+                }
+
+                .user-info-label {
+                    @extend .tool-label;
+                }
+            }
+        }
+    } // end of profile view id
+
+    // edit profile
+
+    #profile-edit-area {
+        @extend #add-area;
+    
+        #edit-personal-profile-form {
+            @extend #add-form;
+            @include flexwrap;
+
+            .image-area {
+                flex: 0 0 100%;
+                margin: 0 auto 1em auto;
+
+                #profile-image {
+                    width: 17em;
+                    margin: 0 auto;
+                
+                    img {
+                        width: 17em;
+                        margin-bottom: 0.5em;
+                    }
+                }
+            }
+
+            .details-area {
+                flex: 0 0 100%;
+
+                .field-type {
+                    width: 100%;
+
+                    input, select {
+                        margin-top: 0.5em !important;
+                    }
+                }
+                
+            }            
+
+        }
+
+        #edit-password-form {
+            margin: 2em 0;
+                
+                .field-type {
+                    width: 100%;
+                    margin: 0 0 0.5em 0;
+                    box-sizing: border-box;
+
+                    input, select {
+                        width: 100%;
+                        padding: 0.6em 0.4em;
+                        font-family: $lato-font;
+                        font-size: 0.9em;
+                        box-sizing: border-box;
+                        border: thin solid $lightgrey-color;
+                        border-radius: $border-round;
+                        color: $darkgrey-color;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                    
+                    select {
+                        height: 2.5em;
+                        background: none;
+                        
+                        option {
+                            &:nth-of-type(1) {
+                                display: none;
+                            }
+                        }
+                    }
+                    
+                    ::-webkit-input-placeholder { 
+                        color: $darkgrey-color;
+                        text-transform: uppercase;
+                        letter-spacing: 0.2em;
+                    }
+
+                    ::-moz-placeholder { 
+                        color: $darkgrey-color;
+                        text-transform: uppercase;
+                        letter-spacing: 0.2em;
+                    } /* firefox 19+ */
+
+                    :-ms-input-placeholder { 
+                        color: $darkgrey-color;
+                        text-transform: uppercase;
+                        letter-spacing: 0.2em;
+                    } /* ie */
+
+                    input:-moz-placeholder { 
+                        color: $darkgrey-color;
+                        text-transform: uppercase;
+                        letter-spacing: 0.2em;
+                    }
+                }
+                
+                .field-type2 {
+                    @extend .field-type;
+                }
+                
+                .button {
+                    width: 100%;
+                    margin-top: 2em;
+                    font-family: $lato-font;
+
+                    input {
+                        width: 100%;
+                        @include turqbutton;
+
+                        &:hover {
+                            background-color: $lightgrey-color;
+                            @include hover-transition;
+                        }
+                    }
+                }
+
+        }
+    } // end of profile edit area id
+
+    // job site area
+        
+    #job-site-area {
+        @extend #toolview-area;
+        
+        .job-site-wrapper {
+            @extend .tool-wrapper;
+            
+            .site-info {
+                @extend .tool-info2;
+            }
+            
+            .site-info-label {
+                @extend .tool-label;
+            }
+        }
+    } // end of job site area id
+        
+    // sites area
+        
+    #sites-area {
+        @extend #tools-area;
+    } // end of sites-area id
+    
+    .job-sites-wrapper {
+        @extend .tool-wrapper;
+        
+        .site-name {
+            @extend .tool-name;
+        }
+        
+        .site-info {
+            @extend .tool-info;
+        }
+    } // end of job sites class
+    
+    // users list area
+
+    #users-area {
+        min-height: 100vh;
+        position: relative;
+        padding: 1.5em 0;
+        margin: 1em 0;
+        box-sizing: border-box;
+        padding: 0.5em;
+
+        .container {
+            
+            .users-list-wrapper {
+                position: relative;
+                font-size: 0.8em;
+                padding-bottom: 1em;
+                margin-bottom: 1em;
+                border-bottom: thin solid $lightgrey-color;
+
+                .icon-wrapper {
+                    position: absolute;
+                    right: 0;
+                    cursor: pointer;
+                    color: red;
+                    font-size: 1.2em;
+
+                    &:hover {
+                        color: $turqoise-color;
+                    }
+                }
+                
+                .name {
+                    
+                    margin-bottom: 0.5em;
+                    color: $turqoise-color !important;
+                    
+                    a {
+                        text-decoration: none;
+                        color: $turqoise-color;
+                        
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+
+                .name2 {
+                    @extend .name;
+                }
+                
+                .info {
+                    margin-bottom: 0.3em;
+                    
+                    .user-info-label {
+                        font-weight: 400;
+                    }
+                }
+
+                .info2 {
+                    @extend .info;
+                }
+            }
+        }
+    } // end of users area ID
+    
+    //print area
+    
+    #print-area {
+        
+        .container {
+            
+            h1 {
+                color: $lightgrey-color;
+            }
+            .print-frame {
+                @include flexwrap;
+                position: relative;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 1em;
+                border: thin solid #000;
+                
+                .tool-name {
+                    flex: 0 0 100%;
+                }
+                
+                .tool-info {
+                    flex: 0 0 100%;
+                    margin-bottom: 0.5em;
+                }
+                
+                .tool-label {
+                    font-weight: 400;
+                }
+                
+                .circle-shape {
+                    width: 2em;
+                    height: 2em;
+                    margin: 5em auto 0 auto;
+                    border: thin solid $darkgrey-color;
+                    border-radius: 2em;
+                }
+                
+            }
+        }
+        
+    } // end of print area
+
+   
+    footer {
+        padding: 0.5em;
+        background-color: $turqoise-color;
+        font-size: 0.7em;
+        text-align: center;
+    }
+
+} // end of body tag
+// ================================================================== //
+                        // Media Queries //
+// ================================================================== //
+
+
+// ================================================================== //
+                        // 44EM //
+// ================================================================== //
+
+@media screen and (min-width: 44em) {
+    body {
+
+        // error and success messages
+
+        .success-form2 {
+            margin-left: 4em !important;
+            width: 70% !important;
+        }
+        
+        // login and signup page
+        
+        .form-page {
+            
+            @include flexwrap;
+            background-image: none;
+            padding: 0;
+                
+            .form-header {
+                flex: 0 0 50%;
+                background-image: url("../images/home-bg1.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+                
+                .login-logo {
+                    width: 12em;
+                    margin: 7em auto 0 !important;
+
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
+            
+            .form-wrapper {
+                flex: 0 0 50%;
+                
+                h1 {
+                    color: $darkgrey-color;
+                    text-shadow: none;
+                }
+                
+                .required-text {
+                    color: red !important;
+                    background-color: rgba(0,0,0,0) !important;
+                }
+                
+                .field-type {
+                    .field-labels {
+                        display: block;
+                    }
+                    
+                    label {
+                        margin-bottom: 0.5em;
+                    }
+                    
+                    input {
+                        background-color: #FFF !important;
+                        border: 1px solid $lightgrey-color !important;
+                        color: $darkgrey-color !important;
+                    }
+                }
+            }
+            
+            .login-account-signup {
+                color: $darkgrey-color;
+            }
+        }
+        
+        // mobile nav
+        
+        #mobile-nav,
+        .mobile-content {
+            display: none;
+        }
+        
+        // menu
+        #menu-overlay {
+            display: block;
+            width: 4em;
+            border-bottom: 0;
+            
+            .link-hide,
+            #menu-close {
+                visibility: hidden;
+            }
+            
+            #nav {
+                ul {
+                    padding: 0;
+                    margin-top: 0;
+                    
+                    li {
+                    font-size: 1em;
+                    display: block;
+                    height: 2em;
+                    text-align: center;
+                    padding: 0.5em 0 0 0;
+                    }
+                }
+            }
+        }
+        
+        //main header 
+        #main-header {
+            display: block;
+            position: relative;
+            height: 3em;
+            padding: 0.5em 0;
+            background-color: $lightgrey-color;
+            
+            .container {
+                width: 90%;
+                @include flexwrap;
+                justify-content: space-between;
+                
+                #main-logo {
+                    flex: 0 0 10em;
+                    margin-left: 2.8em;
+
+                    img {
+                        width: 100%;
+                    }
+                }
+                
+                #username {
+                    flex: 0 0 15em;
+                    text-align: right;
+                    font-size: 0.8em;
+                    font-weight: 400;
+                    color: $darkgrey-color;
+                    padding: 1.2em 0;
+                }
+            } 
+        }
+        #h1-area {
+            display: block;
+            position: relative;
+            height: 1.5em;
+            padding: 0.5em 0;
+            background-color: $turqoise-color;
+            
+            .container {
+                width: 90%;
+                
+                h1 {
+                    font-size: 0.8em;
+                    letter-spacing: 0.2em;
+                    line-height: 1.9em;
+                    color: $darkgrey-color;
+                    text-transform: uppercase;
+                    background-color: $turqoise-color;
+                    margin:0 0 0 4em;
+                }
+            }
+        }
+        
+        //main dashboard content
+        
+        .main-content-wrapper{
+            min-height: 100vh;
+            display: block;
+            .container {
+                width: 90%;
+                
+                .top-content {
+                    @include flexwrap;
+                    margin: 1.3em 0 2em 3.2em;
+                    
+                    #profile-image {
+                        
+                        flex: 0 0 20%;
+                            
+                        img {
+                            width: 100%;
+                        }
+                    }
+                    
+                    #dashboard-greeting {
+                        flex: 0 0 45%;
+                        margin-left: 1.5em;
+                        margin-right: 5em;
+
+                        #cta-area {
+
+                            max-width: 10em;
+                            margin-top: 2em;
+                            
+                            .cta-button {
+                                @include turqbutton;
+                                @include hover-transition;
+                                height: 3em;
+                                margin-right: 1em;
+
+                                a {
+                                    display: block;
+                                    text-align: center;
+                                    color: #FFF;
+                                    text-decoration: none;
+                                    line-height: 1.5em;
+                                }
+
+                                &:hover {
+                                    background-color: $lightgrey-color;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                .box-content {
+                    @include flexwrap;
+                    margin: 1em 0 0 3.2em;
+                    justify-content: space-between;
+                    
+                    .box-area {
+                        flex: 0 0 30%;
+//                        height: 16em;
+                        margin-bottom: 1em;
+//                        border: thin solid $lightgrey-color;
+                        box-sizing: border-box;
+                        
+                        svg {
+                            display: block;
+                            width: 100%;
+                        }
+                        
+                        text.number-inner-circle {
+                          font-weight: 400;
+                          font-size: 2em;
+                          text-transform: uppercase;
+                        }
+                        
+                        text.inner-circle {
+                          font-weight: 400;
+                          font-size: 0.85em;
+                          text-transform: uppercase;
+                        }
+
+                        .arc {
+                          cursor: pointer;
+                            @include hover-transition;
+
+                          &:hover {
+                            opacity: .55;
+                          }
+
+                          text {
+                            font-weight: 300;
+                            font-size: 18px;
+                            color: #fff;
+                          }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    // mobile quick menu
+    
+    .mobile-quick-menu {
+        display: none;
+    }
+    
+    // notifications list
+    
+    #notifications-area {
+        
+        .container {
+            width: 90%;
+            
+            h2 {
+                margin-left: 2.6em;
+            }
+            
+            .notification-wrapper {
+                margin-left: 2.8em !important;
+            }
+        }
+    }
+
+    #error401 {
+
+        .container {
+            justify-content: flex-end;
+
+            #error-image {
+                flex: 0 0 80% !important;
+
+                img {
+                    width: 90% !important;
+                }
+
+            }
+            .large-text {
+                flex: 0 0 89% !important;
+            }
+
+
+            p {
+                flex: 0 0 89% !important;
+            }
+        }
+    }
+    
+    // tools list area
+        
+    #tools-area {
+
+        .container {
+
+            width: 90%;
+
+            .top-content {
+                @include flexwrap;
+
+                h2 {
+                    margin-left: 2.5em;
+                }
+
+                .cta-button {
+                    width: 9em;
+                    position: absolute;
+                    top: 1em;
+                    right: 0;
+                }
+
+            }
+
+            #tool-labels {
+                @include flexwrap;
+                width: auto;
+                margin: 2em 0 1em 3em;
+
+                .tool-title {
+                    flex: 0 0 24.55%;
+                    padding: 0.5em;
+                    font-weight: 400;
+                    font-size: 0.8em;
+                    color: #FFF;
+                    margin-right: 0.2em;
+                    background-color: $darkgrey-color;
+                    box-sizing: border-box;
+                    text-align: center;
+                }
+            }
+
+            .tool-wrapper {
+                margin-left: 3.8em;
+                @include flexwrap;
+                width: auto;
+
+                .tool-name {
+                    flex: 0 0 24%;
+                    margin-left: 0.5em;
+                    box-sizing: border-box;
+                    text-align: center;
+                }
+
+                .tool-info {
+
+                    flex: 0 0 22%;
+                    margin-left: 1em;
+                    box-sizing: border-box;
+                    text-align: center;
+
+                    .tool-label {
+                        display: none;
+                    }
+
+                }
+            }
+        }
+    }
+    
+    // toolview area
+        
+    #toolview-area {
+        
+        .container {
+            width: 90%;
+            
+            .top-content {
+                margin-left: 3.2em;
+            }
+
+            .tool-wrapper {
+                
+                margin-left: 3.7em;
+                .cta-button {
+                    flex: 0 0 33% !important;
+                }
+           
+            }
+        }
+    }
+
+    // add tool form
+        
+    #add-area {
+        margin-left: 3.2em;
+        .container {
+            width: 90%;
+
+            h2 {
+            
+            }
+            
+            #add-form {
+               
+                
+                .field-type {
+
+                    .field-labels {
+                        display: block;
+                    }
+                    
+                    label {
+                        margin-bottom: 0.5em;
+                    }
+
+                    input, select {
+                        
+                        margin-bottom: 0.5em;
+
+                        &:focus {
+
+                        }
+                    }
+                    
+                    select {
+                        
+                    }
+
+                    ::-webkit-input-placeholder { 
+                        color: #FFF !important;
+                    }
+
+                    ::-moz-placeholder { 
+                        color: #FFF !important;
+                    } /* firefox 19+ */
+
+                    :-ms-input-placeholder { 
+                        color: #FFF !important;
+                    } /* ie */
+
+                    input:-moz-placeholder { 
+                        color: #FFF !important;
+                    }
+
+                }
+                
+                .button {
+                    width: 20% !important;
+                }
+            }
+        }
+    }
+    
+    // view company tools list for super user
+    
+    #tools-area-super {
+        
+        #tool-labels {
+            .tool-title {
+                flex: 0 0 19.5% !important;
+            }
+        }
+        
+        .tool-wrapper {
+
+            .tool-name {
+                flex: 0 0 17% !important;
+            }
+
+            .tool-info {
+                flex: 0 0 18% !important;
+            }
+        }
+        
+    }
+    
+    // profile view 
+    
+    #profile-area {
+        
+        .user-info-wrapper {
+            
+            #profile-image {
+                flex: 0 0 50% !important;
+                margin: 1em 2em 0 0 !important;
+
+            }
+            
+            #user-details {
+                flex: 0 0 50% !important;
+                height: 14em;
+                margin-top: 2em;
+                
+                .user-info {
+                    height: 1em;
+                    line-height: 1em;
+                }
+
+                .user-info2 {
+                    height: 1em;
+                    line-height: 1em;
+                }
+            }
+        }
+    }
+    
+    // edit profile
+
+    #profile-edit-area {
+
+        #edit-personal-profile-form {
+            
+            @include flexwrap;
+            
+            .image-area {
+                flex: 0 0 100%;
+                
+                #profile-image {
+                    width: 20em !important;
+                    margin: 1em auto !important;
+                
+                }
+            }
+
+            .details-area {
+                flex: 0 0 100%;
+                
+                .field-type {
+                    width: 100%;
+
+                    label {
+                        margin-bottom: 0 !important;
+                    }
+                }
+            }            
+
+        }
+
+        #edit-password-form {
+
+            .field-type {
+
+                    .field-labels {
+                        display: block;
+                    }
+                    
+                    label {
+                        margin-bottom: 0.5em;
+                    }
+
+                    input, select {
+                        
+                        margin-bottom: 0.5em;
+
+                        &:focus {
+
+                        }
+                    }
+                    
+                    select {
+                        
+                    }
+
+                    ::-webkit-input-placeholder { 
+                        color: #FFF !important;
+                    }
+
+                    ::-moz-placeholder { 
+                        color: #FFF !important;
+                    } /* firefox 19+ */
+
+                    :-ms-input-placeholder { 
+                        color: #FFF !important;
+                    } /* ie */
+
+                    input:-moz-placeholder { 
+                        color: #FFF !important;
+                    }
+
+                }
+
+            .button {
+                    width: 20% !important;
+            }
+        }
+    }
+    
+    // job sites area
+    
+    #sites-area {
+        #site-labels {
+            @extend #tool-labels;
+            
+            .site-title {
+                @extend .tool-title;
+            }
+        }
+        
+        .job-sites-wrapper {
+            .site-info {
+                .site-label {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    //users list area
+    
+    #users-area {
+
+        .container {
+
+            width: 90%;
+
+            .top-content {
+                @include flexwrap;
+
+                h2 {
+                    margin-left: 2.5em;
+                }
+            }
+
+            #user-labels {
+                @include flexwrap;
+                width: 100%;
+                margin: 2em 0 1em 3em;
+
+                .user-title {
+                    flex: 0 0 19.5%;
+                    padding: 0.5em;
+                    font-weight: 400;
+                    font-size: 0.8em;
+                    color: #FFF;
+                    margin-right: 0.2em;
+                    background-color: $darkgrey-color;
+                    box-sizing: border-box;
+                    text-align: center;
+                }
+
+                .user-title2 {
+                    @extend .user-title;
+                    flex: 0 0 32.5% !important;
+                }
+            }
+
+
+            .users-list-wrapper {
+                margin-left: 3.8em;
+                @include flexwrap;
+                width: 98%;
+
+                .icon-wrapper {
+                    right: 0.7em !important;
+                }
+
+                .name {
+                    flex: 0 0 18%;
+                    box-sizing: border-box;
+                    text-align: center;
+                }
+
+                .name2 {
+                    flex: 0 0 31% !important;
+                    box-sizing: border-box;
+                    text-align: center;
+                }
+
+                .info {
+
+                    flex: 0 0 18%;
+                    margin-left: 1.3em;
+                    box-sizing: border-box;
+                    text-align: center;
+
+                    .user-info-label {
+                        display: none;
+                    }
+
+                }
+
+                .info2 {
+                    flex: 0 0 31% !important;
+                    margin-left: 1.3em;
+                    box-sizing: border-box;
+                    text-align: center;
+
+                    .user-info-label {
+                        display: none;
+                    }
+
+                }
+            }
+        }
+    } // end of users area
+    
+    // print area
+    
+     #print-area {
+        
+        .container {
+            
+            .print-frame {
+                max-height: 14em;
+                max-width: 40em;
+                font-size: 0.9em;
+                
+                .tool-info {
+                    flex: 0 0 50% !important;
+                }
+                
+                .circle-shape {
+                    width: 1.5em !important;
+                    height: 1.5em !important;
+                    margin: 0 !important;
+                    position: absolute;
+                    top: 5.2em;
+                    right: 1em;
+                }
+                
+            }
+        }
+        
+    }
+
+    footer {
+        .container {
+            width: 90%;
+            
+            #footer-wrapper {
+                text-align: right !important;
+            }
+        }
+    }
+}
+
+// ================================================================== //
+                        // 64EM //
+// ================================================================== //
+
+@media screen and (min-width: 64em) {
+
+body{
+    // error and success messages
+
+    .success-form2 {
+        margin-left: 19.6em !important;
+        width: 60% !important;
+    }
+
+    
+    // login and signup page
+    
+    .login-logo {
+        width: 15em !important;
+    }
+    
+    .form-wrapper {
+        .container {
+            width: 80%;
+            
+            h1 {
+                margin-bottom: 2em;
+            }
+            
+            #login-form {
+                .button {
+                    width: 25% !important;
+                }
+            }
+            
+            .login-account-signup {
+                text-align: left !important;
+            }
+            
+            #signup-form {
+                @include flexwrap;
+                justify-content: space-between;
+                
+                .field-type {
+                    flex: 0 0 48%;
+                }
+                
+                .button {
+                    width: 25% !important;
+                }
+            }
+        }
+    }
+    
+    // menu
+    
+    #menu-overlay {
+        width: 14em !important;
+
+        nav {
+            ul{
+                li {
+                    padding: 1em 0 !important;
+                    text-align: left !important;
+                    font-size: 0.8em !important;
+                    .link-hide {
+                        visibility: visible;
+                    }
+                }
+
+            }
+
+        }
+    }
+    
+    // main header 
+    
+    #main-header {
+        .container {
+            width: 95% !important;
+            
+            #main-logo {
+                margin-left: 13.7em !important;
+            }
+        }
+    }
+    
+    // h1 area
+    
+    #h1-area {
+        .container{
+            h1 {
+                margin-left: 15.3em !important;
+            }
+        }
+    }
+    
+    //main dashboard content
+        
+    .main-content-wrapper {
+        .container {
+            
+            width: 95% !important;
+            
+            .top-content{
+                margin-left: 14em !important;
+            }
+            
+            .box-content {
+                margin-left: 14em !important;
+            }
+            
+            .cta-button {
+                flex: 0 0 35% !important;
+            }
+        
+        }
+    }
+
+    #error401 {
+
+        .container {
+            justify-content: flex-end;
+
+            #error-image {
+                flex: 0 0 70% !important;
+
+            }
+
+            
+            .large-text {
+                flex: 0 0 80% !important;
+            }
+
+
+            p {
+                flex: 0 0 77% !important;
+            }
+        }
+
+    }
+    
+    // notifications list
+    
+    #notifications-area {
+        
+        .container {
+            width: 95%;
+            
+            h2 {
+                margin-left: 11.5em;
+            }
+            
+            .notification-wrapper {
+                margin-left: 13.5em !important;
+            }
+        }
+    }
+    
+    // tools list area
+    
+    #tools-area {
+
+        .container {
+            
+            width: 95%;
+
+            .top-content {
+        
+
+                h2 {
+                    margin-left: 11.4em;
+                }
+
+                .cta-button {
+                    margin-right: 0 !important;
+                }
+
+            }
+
+            #tool-labels {
+                margin-left: 13.6em;
+
+                .tool-title {
+                    flex: 0 0 24.66%;
+                }
+            }
+
+            .tool-wrapper {
+                margin-left: 17em;
+                @include flexwrap;
+
+                .tool-name {
+                    flex: 0 0 24%;
+                }
+
+                .tool-info {
+                    flex: 0 0 23%;
+                    margin-left: 1.1em;
+                }
+            }
+        }
+    }
+    
+    // toolview area
+        
+    #toolview-area {
+        
+        .container {
+            width: 95%;
+            
+            .top-content {
+                margin-left: 14em;
+            }
+
+            .tool-wrapper {
+                
+                margin-left: 15.6em;
+                
+                .cta-button {
+                    flex: 0 0 30% !important;
+                }
+           
+            }
+        }
+    }
+
+    // add tool form
+        
+    #add-area {
+        margin-left: 14.2em;
+        
+        .container {
+            width: 95%;
+
+            h2 {
+            
+            }
+            
+            #add-form {
+                @include flexwrap;
+                justify-content: space-between;
+                
+                .field-type {
+
+                    flex: 0 0 48%;
+                }
+
+                .field-type2 {
+                    flex: 0 0 100% !important;
+                }
+
+                .button {
+                    flex: 0 0 100% !important;
+
+                    input {
+                        width: 20% !important;
+                    }
+                }
+            }
+        }
+    }
+    
+    // edit profile
+
+    #profile-edit-area {
+
+        #edit-personal-profile-form {
+            
+            .image-area {
+                flex: 0 0 18% !important;
+                margin: 0 3em 1em 0 !important;
+                
+                #profile-image {
+                    width: 100% !important;
+                    margin: 1em auto !important;
+                    
+                    img {
+                        width: 12em !important;
+                    }
+                
+                }
+            }
+
+            .details-area {
+                flex: 0 0 75% !important;
+                @include flexwrap;
+                justify-content: space-between;
+                .field-type {
+                    width: 50%;
+                    margin-right: 0.5em;
+                }
+            }
+            
+            .button {
+                flex: 0 0 100%;
+                
+                input {
+                    width: 20% !important;
+                }
+            }
+
+        }
+
+        #edit-password-form {
+
+                @include flexwrap;
+                justify-content: space-between;
+
+                .field-type {
+                    width: 49% !important;
+                    
+                }
+
+            .button {
+                flex: 0 0 100%;
+                
+                input {
+                    width: 20% !important;
+                }
+            }
+        }
+    }
+
+    //users list area
+    
+    #users-area {
+
+        margin-left: 9.3em !important;
+
+        .container{
+            .users-list-wrapper{
+                .icon-wrapper {
+                    right: 1em !important;
+                }
+            }  
+        }
+
+        
+
+    } // end of users area
+    
+    footer {
+        .container {
+            width: 95%;
+        }
+    }
+}
+
+    
+
+}
+
+// ================================================================== //
+                        // 84EM //
+// ================================================================== //
+
+@media screen and (min-width: 84em) {
+    
+    // login and signup page
+    
+    .login-logo {
+        width: 18em !important;
+        
+    }
+}
+    
+    
